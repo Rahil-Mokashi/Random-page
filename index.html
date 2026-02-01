@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Be My Valentine 💖</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+
+    /* Floating Hearts */
+    .heart {
+      position: absolute;
+      font-size: 22px;
+      animation: float 6s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(100vh);
+      }
+      to {
+        transform: translateY(-10vh);
+      }
+    }
+
+    /* Card */
+    .card {
+      background: white;
+      padding: 45px;
+      border-radius: 30px;
+      width: 360px;
+      text-align: center;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+      position: relative;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      color: #ff4d6d;
+      font-size: 34px;
+      margin-bottom: 15px;
+    }
+
+    .typing {
+      font-size: 18px;
+      color: #555;
+      height: 28px;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      position: relative;
+      height: 70px;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    button {
+      padding: 14px 30px;
+      border-radius: 40px;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    #yesBtn {
+      background: #ff4d6d;
+      color: white;
+      box-shadow: 0 12px 25px rgba(255,77,109,0.4);
+    }
+
+    #yesBtn:hover {
+      transform: scale(1.15);
+    }
+
+    #noBtn {
+      background: #ffe3e8;
+      color: #ff4d6d;
+      position: absolute;
+      right: 0;
+    }
+
+    /* Result */
+    .result {
+      display: none;
+      margin-top: 35px;
+      animation: fadeIn 1.2s ease forwards;
+    }
+
+    .result h2 {
+      font-family: 'Pacifico', cursive;
+      color: #ff4d6d;
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .result img {
+      width: 230px;
+      border-radius: 18px;
+      margin-top: 15px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Confetti Hearts */
+    .confetti {
+      position: fixed;
+      top: 0;
+      font-size: 20px;
+      animation: fall 3s linear infinite;
+    }
+
+    @keyframes fall {
+      from {
+        transform: translateY(-10vh);
+      }
+      to {
+        transform: translateY(110vh);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Hearts -->
+  <span class="heart" style="left:10%">💖</span>
+  <span class="heart" style="left:25%">💘</span>
+  <span class="heart" style="left:40%">💕</span>
+  <span class="heart" style="left:55%">💗</span>
+  <span class="heart" style="left:70%">💓</span>
+  <span class="heart" style="left:85%">💞</span>
+
+  <div class="card">
+    <h1>Hey Beautiful 💕</h1>
+    <div class="typing" id="typing"></div>
+
+    <div class="buttons">
+      <button id="yesBtn">Yes 💘</button>
+      <button id="noBtn">No 😒</button>
+    </div>
+
+    <div class="result" id="result">
+      <h2>YAYYYY 🥹💖</h2>
+      <p>You’re officially my Valentine 🌹</p>
+      <img src="https://i.imgflip.com/4/1bij.jpg" alt="Happy Meme">
+    </div>
+  </div>
+
+  <script>
+    /* Typing Effect */
+    const text = "Will you be my Valentine? 💌";
+    let index = 0;
+    const typingDiv = document.getElementById("typing");
+
+    function typeEffect() {
+      if (index < text.length) {
+        typingDiv.innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeEffect, 80);
+      }
+    }
+    typeEffect();
+
+    /* No Button Escape */
+    const noBtn = document.getElementById("noBtn");
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * 220 - 110;
+      const y = Math.random() * 120 - 60;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    });
+
+    /* Yes Button */
+    const yesBtn = document.getElementById("yesBtn");
+    const result = document.getElementById("result");
+
+    yesBtn.addEventListener("click", () => {
+      result.style.display = "block";
+      noBtn.style.display = "none";
+      yesBtn.disabled = true;
+      startConfetti();
+    });
+
+    /* Confetti Hearts */
+    function startConfetti() {
+      for (let i = 0; i < 30; i++) {
+        const conf = document.createElement("div");
+        conf.classList.add("confetti");
+        conf.innerText = "💖";
+        conf.style.left = Math.random() * 100 + "vw";
+        conf.style.animationDuration = Math.random() * 2 + 2 + "s";
+        document.body.appendChild(conf);
+
+        setTimeout(() => conf.remove(), 3000);
+      }
+    }
+  </script>
+
+</body>
+</html>
