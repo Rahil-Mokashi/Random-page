@@ -23,7 +23,7 @@
       overflow: hidden;
     }
 
-    /* Floating Hearts */
+    
     .heart {
       position: absolute;
       font-size: 22px;
@@ -40,7 +40,7 @@
       }
     }
 
-    /* Card */
+   
     .card {
       background: white;
       padding: 45px;
@@ -99,7 +99,7 @@
       right: 0;
     }
 
-    /* Result */
+    
     .result {
       display: none;
       margin-top: 35px;
@@ -131,7 +131,7 @@
       }
     }
 
-    /* Confetti Hearts */
+    
     .confetti {
       position: fixed;
       top: 0;
@@ -151,7 +151,7 @@
 </head>
 <body>
 
-  <!-- Floating Hearts -->
+
   <span class="heart" style="left:10%">💖</span>
   <span class="heart" style="left:25%">💘</span>
   <span class="heart" style="left:40%">💕</span>
@@ -176,7 +176,6 @@
   </div>
 
   <script>
-    /* Typing Effect */
     const text = "Will you be my Valentine? 💌";
     let index = 0;
     const typingDiv = document.getElementById("typing");
@@ -190,7 +189,6 @@
     }
     typeEffect();
 
-    /* No Button Escape */
     const noBtn = document.getElementById("noBtn");
     noBtn.addEventListener("mouseover", () => {
       const x = Math.random() * 220 - 110;
@@ -198,7 +196,6 @@
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
     });
 
-    /* Yes Button */
     const yesBtn = document.getElementById("yesBtn");
     const result = document.getElementById("result");
 
@@ -209,7 +206,7 @@
       startConfetti();
     });
 
-    /* Confetti Hearts */
+
     function startConfetti() {
       for (let i = 0; i < 30; i++) {
         const conf = document.createElement("div");
